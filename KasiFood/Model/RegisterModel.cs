@@ -2,7 +2,7 @@
 
 namespace KasiFood.Model
 {
-    public class Register
+    public class RegisterModel
     {
         [Key]
         public Guid CustomerGuid { get; set; }

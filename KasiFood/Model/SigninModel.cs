@@ -1,6 +1,6 @@
 ﻿namespace KasiFood.Model
 {
-    public class Signin
+    public class SigninModel
     {
     }
 }
