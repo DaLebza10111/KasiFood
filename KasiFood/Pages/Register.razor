@@ -1,0 +1,56 @@
+﻿@page "/register"
+@using KasiFood.Model
+@inject NavigationManager NavManager
+
+<h2>Register your account</h2>
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+
+                    <MudTextField Label="First name"
+                                  @bind-Value="model.CustomerName" For="@(() => model.CustomerName)" />
+
+                    <MudNumericField Label="Phone Number"
+                                     @bind-Value="model.PhoneNumber" For="@(() => model.PhoneNumber)" />
+
+                    <MudTextField Label="Email" Class="mt-3"
+                                  @bind-Value="model.EmailAddress" For="@(() => model.EmailAddress)" />
+
+                    <MudTextField Label="Password" Class="mt-3"
+                                  @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+                </MudCardActions>
+                <br />
+                <p class="mx-3">Already have an account <Signin>Sign in</Signin> </p>
+                <br/>
+                <br/>
+                <MudButton Variant="Variant.Filled" Class="mx-2 mb-3" Color="Color.Primary">GOOGLE</MudButton>
+                <MudButton Variant="Variant.Filled" Class="mx-2 mb-3" Color="Color.Secondary">FACEBOOK</MudButton>
+                <MudDivider />
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    RegisterModel model = new RegisterModel();
+    bool success;
+
+    private void OnValidSubmit(EditContext context)
+    {
+        success = true;
+        StateHasChanged();
+    }
+
+    protected void Navigatoor()
+    {
+        NavManager.NavigateTo("/signin");
+    }
+}
