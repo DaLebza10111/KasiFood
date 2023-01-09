@@ -1,0 +1,47 @@
+﻿@page "/signin"
+@inject NavigationManager NavManager
+
+<h3>Login to your account</h3>
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                                      
+                    <MudTextField Label="Email" Class="mt-3"
+                                  @bind-Value="model.EmailAddress" For="@(() => model.EmailAddress)" />
+
+                    <MudTextField Label="Password" Class="mt-3"
+                                  @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Login</MudButton>
+                </MudCardActions>
+                <br />
+                <p class="mx-3">Don't have an account <button Variant="Variant.Text" style="color: #FF0000" @onclick="Navigatoor">register</button>.</p>
+                <br />
+                <br />
+                <MudButton Variant="Variant.Filled" Class="mx-2 mb-3" Color="Color.Primary">GOOGLE</MudButton>
+                <MudButton Variant="Variant.Filled" Class="mx-2 mb-3" Color="Color.Secondary">FACEBOOK</MudButton>
+                <MudDivider />
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    RegisterModel model = new RegisterModel();
+
+    private void OnValidSubmit(EditContext context)
+    {
+        StateHasChanged();
+    }
+
+    protected void Navigatoor()
+    {
+        NavManager.NavigateTo("/register");
+    }
+}

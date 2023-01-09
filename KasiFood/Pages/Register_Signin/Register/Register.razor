@@ -1,5 +1,4 @@
 ﻿@page "/register"
-@using KasiFood.Model
 @inject NavigationManager NavManager
 
 <h2>Register your account</h2>
@@ -14,8 +13,8 @@
 
                     <MudTextField Label="First name"
                                   @bind-Value="model.CustomerName" For="@(() => model.CustomerName)" />
-
-                    <MudNumericField Label="Phone Number"
+                                          
+                    <MudTextField Label="Phone Number"
                                      @bind-Value="model.PhoneNumber" For="@(() => model.PhoneNumber)" />
 
                     <MudTextField Label="Email" Class="mt-3"
@@ -28,7 +27,7 @@
                     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
                 </MudCardActions>
                 <br />
-                <p class="mx-3">Already have an account <Signin>Sign in</Signin> </p>
+                <p class="mx-3">Already have an account <button Variant="Variant.Text" style="color: #FF0000" @onclick="Navigatoor">sign in</button>.</p>
                 <br/>
                 <br/>
                 <MudButton Variant="Variant.Filled" Class="mx-2 mb-3" Color="Color.Primary">GOOGLE</MudButton>
@@ -41,11 +40,9 @@
 
 @code {
     RegisterModel model = new RegisterModel();
-    bool success;
 
     private void OnValidSubmit(EditContext context)
     {
-        success = true;
         StateHasChanged();
     }
 
