@@ -1,0 +1,14 @@
+﻿@page "/verifyemail"
+@using KasiFood.Pages.Register_Signin.Register
+
+<OTPScreen PageHeading="Verify Your Email"></OTPScreen>
+
+@code {
+    RegisterModel model = new RegisterModel();
+
+    private void OnValidSubmit(EditContext context)
+    {
+        StateHasChanged();
+    }
+
+}

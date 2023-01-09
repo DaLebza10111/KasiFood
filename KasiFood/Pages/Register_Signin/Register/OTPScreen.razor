@@ -1,0 +1,57 @@
+﻿@page "/OTPscreen"
+@inject NavigationManager NavManager
+
+<button Variant="Variant.Text" style="color: #FF0000" @onclick="Navigatoor">@backbutton</button>
+<br />
+<h3>@PageHeading</h3>
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+
+                    <div class="d-flex mx-2 px-2">
+                        <div class="mx-2 px-2"><MudTextField @bind-Value="Digit1" Variant="Variant.Outlined" /></div>
+                        <div class="mx-2 px-2"><MudTextField @bind-Value="Digit2" Variant="Variant.Outlined" /></div>
+                        <div class="mx-2 px-2"><MudTextField @bind-Value="Digit3" Variant="Variant.Outlined" /></div>
+                        <div class="mx-2 px-2"><MudTextField @bind-Value="Digit4" Variant="Variant.Outlined" /></div>
+                    </div>
+
+                </MudCardContent>
+                <MudCardActions>
+                    <div class="mx-2 px-2"><MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Verify</MudButton></div>
+                        <div class="mx-2 px-2"><MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Resend OTP</MudButton></div>
+                </MudCardActions>
+                <br />
+                <br />
+                <br />    
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? PageHeading { get; set; } = "Verify Your Phone Number";
+    public string backbutton = "< Back";
+
+    RegisterModel model = new RegisterModel();
+
+    public int? Digit1 { get; set; }
+    public int? Digit2 { get; set; }
+    public int? Digit3 { get; set; }
+    public int? Digit4 { get; set; }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        StateHasChanged();
+    }
+
+    protected void Navigatoor()
+    {
+        NavManager.NavigateTo("/signin");
+    }
+}
